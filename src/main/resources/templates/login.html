@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/styles/style.css" rel="stylesheet"/>
+    <title>login</title>
+</head>
+<body>
+<div class="login-div">
+    <h2>Connexion ☻</h2>
+    <form action="/server/auth/login" th:object="${credentials}" class="login-form">
+        <!-- Email input -->
+        <input type="email" id="username" th:field="*{username}" placeholder="votreemail@exemple.com" required/>
+
+        <!-- Password input -->
+        <input type="password" id="password" th:field="*{password}" placeholder="Votre mot de passe" required/>
+
+        <!-- Submit button -->
+        <button type="submit">Se connecter</button>
+    </form>
+</div>
+</body>
+</html>
