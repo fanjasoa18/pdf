@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <style>
+        * {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 500px;
+        }
+        .page-title-add {
+            text-align: center;
+            padding-bottom: 40px;
+        }
+        .details-container {
+            width: 100%;
+            position: relative;
+            height: 300px;
+            margin: 0;
+            padding: 0;
+        }
+        .details-info {
+            position: absolute;
+            top: 0;
+            right: 50px;
+        }
+        .details-info p, .foot p  {
+            padding-bottom: 10px;
+        }
+        .foot {
+            position: relative;
+            width: 100%;
+        }
+        footer {
+            border-top: 2px solid black;
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            width: 100%;
+            padding-top: 10px;
+        }
+        .image {
+            height: 220px;
+            width: 220px;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        .logo {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .two {
+            position: absolute;
+            top: 0;
+            left: 30%;
+        }
+        .three {
+            position: absolute;
+            top: 0;
+            left: 60%;
+        }
+    </style>
+    <title>Pdf employee</title>
+</head>
+<body>
+
+<div>
+    <div class="page-title-add">
+        <h1>Détails de l'employé</h1>
+    </div>
+    <div class="details-container">
+        <img th:src="${employee.stringImage}" alt="no image" class="image"/>
+
+        <div class="details-info">
+            <p><strong>Numéro matricule:</strong> <span th:text="*{employee.matricule}"></span></p>
+            <p><strong>Nom(s):</strong> <span th:text="*{employee.firstName}"></span></p>
+            <p><strong>Prénom(s): </strong> <span th:text="*{employee.lastName}"></span></p>
+            <p><strong>Âge: </strong> <span th:text="${age}"></span> ans</p>
+            <p><strong>Date d'embauche: </strong> <span th:text="*{employee.entranceDate}"></span></p>
+            <p><strong>Date de démission: </strong> <span th:text="*{employee.departureDate}"></span></p>
+            <p><strong>Numéro CNAPS: </strong> <span th:text="*{employee.cnaps}"></span></p>
+        </div>
+    </div>
+    <div class="salary-info">
+        <h2>Information sur le salaire :</h2>
+        <p><strong>salaire brute actuel: <span th:text="${employee.salary}"></span></strong></p>
+    </div>
+    <footer>
+        <div class="foot">
+
+            <img th:src="${companyConf.logo}" alt="logo" class="logo"/>
+
+            <div class="two">
+                <p><strong>Nom:</strong> <span th:text="${companyConf.name}"></span></p>
+                <p><strong>NIF:</strong> <span th:text="${companyConf.taxIdentity.nif}"></span></p>
+                <p><strong>STAT:</strong> <span th:text="${companyConf.taxIdentity.stat}"></span></p>
+            </div>
+            <div class="three">
+                <p><strong>Adresse:</strong> <span th:text="${companyConf.address}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${companyConf.email}"></span></p>
+                <p><strong>Téléphone:</strong><span th:each="phone : ${companyConf.phones}">
+                    <span th:text="${phone.value}"></span>
+                </span></p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
